@@ -18,15 +18,15 @@
       background:#020617;
     }
 
-    /* Gradient base */
+    /* 🔥 More engaging animated gradient */
     .bg-gradient {
       position:absolute;
       inset:-50%;
       background: linear-gradient(120deg, #38bdf8, #6366f1, #22d3ee, #818cf8);
-      background-size: 300% 300%;
+      background-size: 400% 400%;
       filter: blur(120px);
-      opacity:0.35;
-      animation: gradientMove 10s ease infinite;
+      opacity:0.4;
+      animation: gradientMove 8s ease infinite;
     }
 
     @keyframes gradientMove {
@@ -35,33 +35,33 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Floating particles */
+    /* ✨ Better particles (more fun + visible) */
     .particles span {
       position:absolute;
-      display:block;
-      width:6px;
-      height:6px;
-      background:#38bdf8;
+      width:5px;
+      height:5px;
+      background:white;
       border-radius:50%;
-      opacity:0.6;
+      opacity:0.7;
       animation: floatUp linear infinite;
     }
 
     @keyframes floatUp {
-      from { transform: translateY(100vh) scale(0.5); opacity:0; }
-      30% { opacity:0.6; }
-      to { transform: translateY(-10vh) scale(1); opacity:0; }
+      0% { transform: translateY(100vh) scale(0.5); opacity:0; }
+      20% { opacity:0.7; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity:0; }
     }
 
-    /* Cursor glow */
+    /* 🎯 Cursor glow */
     .cursor-glow {
       position:absolute;
-      width:400px;
-      height:400px;
-      background: radial-gradient(circle, rgba(56,189,248,0.2), transparent 60%);
+      width:450px;
+      height:450px;
+      background: radial-gradient(circle, rgba(56,189,248,0.25), transparent 60%);
       pointer-events:none;
       transform: translate(-50%, -50%);
       z-index:1;
+      transition: all 0.05s linear;
     }
 
     .container {
@@ -78,9 +78,9 @@
       text-transform:uppercase;
       color:#38bdf8;
       margin-bottom:20px;
-      animation: fadeIn 1s ease;
     }
 
+    /* ✨ Subtle tempting pulse */
     h1 {
       font-size:3.5rem;
       font-weight:700;
@@ -88,14 +88,18 @@
       background: linear-gradient(90deg,#38bdf8,#818cf8);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
-      animation: fadeInUp 1.2s ease;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
     }
 
     p {
       color:#cbd5f5;
       font-size:1.1rem;
       margin-bottom:35px;
-      animation: fadeInUp 1.6s ease;
     }
 
     .email-box {
@@ -107,7 +111,13 @@
       padding:5px;
       max-width:420px;
       margin:0 auto;
-      animation: fadeInUp 2s ease;
+      transition:0.3s;
+    }
+
+    /* 🔥 hover glow interaction */
+    .email-box:hover {
+      box-shadow: 0 0 30px rgba(56,189,248,0.4);
+      transform: scale(1.02);
     }
 
     input {
@@ -131,9 +141,10 @@
       transition: all 0.25s ease;
     }
 
+    /* 💥 juicy hover */
     button:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 25px rgba(56,189,248,0.7);
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(56,189,248,0.9);
     }
 
     .success-message {
@@ -145,20 +156,10 @@
 
     .footer {
       margin-top:50px;
-      font-size:0.8rem;
-      color:#64748b;
+      font-size:0.9rem;
+      color:#94a3b8;
       line-height:1.6;
-      animation: fadeIn 2.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity:0; }
-      to { opacity:1; }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity:0; transform: translateY(15px); }
-      to { opacity:1; transform: translateY(0); }
+      letter-spacing:0.5px;
     }
 
     @media (max-width:500px) {
@@ -187,7 +188,7 @@
     <div class="success-message" id="successMsg">🚀 You're on the list!</div>
 
     <div class="footer">
-      © <span id="year"></span> Zestlie
+      © <span id="year"></span> Zestlie. All rights reserved.
     </div>
   </div>
 
@@ -198,12 +199,11 @@
       glow.style.top = e.clientY + 'px';
     });
 
-    // particles
     const particlesContainer = document.getElementById('particles');
-    for(let i=0;i<40;i++){
+    for(let i=0;i<60;i++){
       const span = document.createElement('span');
       span.style.left = Math.random()*100 + 'vw';
-      span.style.animationDuration = (5 + Math.random()*10) + 's';
+      span.style.animationDuration = (4 + Math.random()*6) + 's';
       span.style.animationDelay = Math.random()*5 + 's';
       particlesContainer.appendChild(span);
     }
