@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zestlie | Coming Soon</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Zestlie — Arriving Soon</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 * {
@@ -16,266 +16,231 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
+  background: radial-gradient(circle at 20% 20%, #1e293b, #020617 70%);
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
   overflow: hidden;
-  background: #070a12;
-  color: #e5e7eb;
 }
 
-/* ================= BACKGROUND ================= */
-
-/* animated gradient */
-.bg-gradient {
+/* subtle animated glow */
+body::before {
+  content: "";
   position: absolute;
-  width: 200%;
-  height: 200%;
-  background:
-    radial-gradient(circle at 20% 30%, #1e293b, transparent 40%),
-    radial-gradient(circle at 80% 70%, #111827, transparent 40%),
-    radial-gradient(circle at 50% 50%, #020617, #000);
-  animation: bgMove 30s ease-in-out infinite alternate;
-  z-index: -3;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(99,102,241,0.25), transparent 70%);
+  animation: float 10s ease-in-out infinite alternate;
 }
-
-@keyframes bgMove {
-  0% { transform: translate(0,0) scale(1); }
-  100% { transform: translate(-80px,-80px) scale(1.1); }
-}
-
-/* floating blobs */
-.blob {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  filter: blur(120px);
-  opacity: 0.25;
-  border-radius: 50%;
-  animation: float 12s infinite ease-in-out alternate;
-}
-
-.blob1 { background: #6366f1; top: 10%; left: 15%; }
-.blob2 { background: #22d3ee; bottom: 10%; right: 15%; }
 
 @keyframes float {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-60px); }
+  from { transform: translate(-100px, -80px); }
+  to { transform: translate(100px, 80px); }
 }
-
-/* mouse glow */
-.glow {
-  position: fixed;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(99,102,241,0.12), transparent 60%);
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-}
-
-/* ================= CONTENT ================= */
 
 .container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
+  width: 100%;
+  max-width: 520px;
   text-align: center;
-  padding: 20px;
+  z-index: 1;
 }
 
 h1 {
-  font-size: 3.2rem;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 600;
-  letter-spacing: 2px;
-  animation: fadeUp 1s ease forwards;
+  letter-spacing: 1px;
 }
 
-p {
-  opacity: 0.6;
-  margin-bottom: 35px;
-  animation: fadeUp 1.5s ease forwards;
+.tagline {
+  margin-top: 12px;
+  font-size: 1rem;
+  color: #94a3b8;
+  line-height: 1.6;
 }
-
-/* ================= INPUT ================= */
 
 .form {
-  position: relative;
+  margin-top: 40px;
   display: flex;
-  width: 100%;
-  max-width: 420px;
   border-radius: 999px;
-  padding: 6px;
-  backdrop-filter: blur(20px);
+  overflow: hidden;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
-  overflow: hidden;
+  backdrop-filter: blur(12px);
 }
 
-/* shimmer (fixed) */
-.form::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -60%;
-  width: 40%;
-  height: 100%;
-  background: linear-gradient(
-    110deg,
-    transparent,
-    rgba(255,255,255,0.12),
-    transparent
-  );
-  transform: skewX(-20deg);
-  animation: shimmer 5s infinite;
-}
-
-@keyframes shimmer {
-  0% { left: -60%; }
-  100% { left: 120%; }
-}
-
-.form:focus-within::before {
-  opacity: 0;
-  animation: none;
-}
-
-.form input {
+input {
   flex: 1;
+  padding: 14px 18px;
   border: none;
-  outline: none;
   background: transparent;
   color: white;
-  padding: 12px 15px;
-  z-index: 1;
+  font-size: 0.95rem;
+  outline: none;
 }
 
-.form input::placeholder {
-  color: rgba(255,255,255,0.4);
+input::placeholder {
+  color: #64748b;
 }
 
-/* button */
-.form button {
+button {
+  position: relative;
+  padding: 14px 22px;
   border: none;
-  padding: 10px 22px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-  color: white;
   cursor: pointer;
-  transition: 0.25s;
-  z-index: 1;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  font-weight: 500;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
-.form button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 18px rgba(99,102,241,0.4);
+/* hover glow */
+button:hover {
+  box-shadow: 0 0 20px rgba(99,102,241,0.4);
 }
 
-.form button:active {
-  transform: scale(0.96);
-}
-
-/* ================= FOOTER ================= */
-
-.footer {
+/* ripple animation */
+button::after {
+  content: "";
   position: absolute;
-  bottom: 20px;
-  font-size: 0.75rem;
-  opacity: 0.4;
-}
-
-/* ================= TOAST ================= */
-
-.toast {
-  position: fixed;
-  bottom: 30px;
-  background: rgba(20,20,30,0.9);
-  padding: 12px 20px;
-  border-radius: 10px;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
   opacity: 0;
-  transform: translateY(20px);
-  transition: 0.4s;
-  font-size: 0.9rem;
 }
 
-.toast.show {
+button:active::after {
+  width: 200px;
+  height: 200px;
+  opacity: 1;
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.6s;
+}
+
+/* loading spinner */
+.loading {
+  pointer-events: none;
+}
+
+.loading span {
+  opacity: 0;
+}
+
+.loading::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border: 2px solid white;
+  border-top-color: transparent;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.success {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #c4b5fd;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s ease;
+}
+
+.success.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ================= ANIMATION ================= */
+/* responsive stacking on small devices */
+@media (max-width: 480px) {
+  .form {
+    flex-direction: column;
+    border-radius: 20px;
+  }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  button {
+    width: 100%;
+  }
 }
 
-/* mobile */
-@media(max-width: 500px) {
-  h1 { font-size: 2.3rem; }
+footer {
+  position: fixed;
+  bottom: 15px;
+  font-size: 0.8rem;
+  color: #64748b;
+  text-align: center;
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg-gradient"></div>
-<div class="blob blob1"></div>
-<div class="blob blob2"></div>
-<div class="glow" id="glow"></div>
-
 <div class="container">
   <h1>Zestlie</h1>
-  <p>Crafted with intention. Launching soon.</p>
 
-  <form class="form" id="form">
-    <input type="email" name="email" placeholder="Enter your email" required>
-    <button type="submit">Notify</button>
+  <p class="tagline">
+    Designed with intention. Built to feel effortless.
+  </p>
+
+  <form id="form" class="form" action="https://formspree.io/f/mpqbpdab" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button id="btn"><span>Get Early Access</span></button>
   </form>
 
-  <p style="font-size:0.8rem; opacity:0.5;">
-    info@zestlie.com
-  </p>
+  <div id="success" class="success">
+    You're on the list. We’ll let you in first.
+  </div>
 </div>
 
-<div class="footer">
-  © 2026 Zestlie. All rights reserved.
-</div>
-
-<div class="toast" id="toast"></div>
+<footer>
+  © 2026 Zestlie — Crafted with intent.
+</footer>
 
 <script>
-// mouse glow
-document.addEventListener("mousemove", e => {
-  glow.style.left = e.clientX + "px";
-  glow.style.top = e.clientY + "px";
-});
+const form = document.getElementById('form');
+const btn = document.getElementById('btn');
+const success = document.getElementById('success');
 
-// form submit
-const form = document.getElementById("form");
-const toast = document.getElementById("toast");
-
-form.addEventListener("submit", async (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
+
+  btn.classList.add('loading');
+
   const data = new FormData(form);
 
   try {
-    await fetch("https://formspree.io/f/mpqbpdab", {
-      method: "POST",
+    const res = await fetch(form.action, {
+      method: form.method,
       body: data,
       headers: { 'Accept': 'application/json' }
     });
 
-    toast.innerText = "You're on the list ✨";
-    toast.classList.add("show");
-    form.reset();
-  } catch {
-    toast.innerText = "Something went wrong. Try again.";
-    toast.classList.add("show");
-  }
+    if (res.ok) {
+      form.reset();
+      btn.classList.remove('loading');
+      btn.innerHTML = "<span>Reserved</span>";
+      success.classList.add('show');
+    } else {
+      throw new Error();
+    }
 
-  setTimeout(() => toast.classList.remove("show"), 3000);
+  } catch {
+    btn.classList.remove('loading');
+    btn.innerHTML = "<span>Try Again</span>";
+  }
 });
 </script>
 
