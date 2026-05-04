@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zestlie — Arriving Soon</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -15,69 +15,75 @@
   font-family: 'Inter', sans-serif;
 }
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
-  min-height: 100vh;
+  height: 100dvh;
   background: radial-gradient(circle at 20% 20%, #1e293b, #020617 70%);
   color: #e2e8f0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  overflow: hidden;
+  padding: 16px;
+  position: relative;
 }
 
-/* subtle animated glow */
+/* ambient glow */
 body::before {
   content: "";
   position: absolute;
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   background: radial-gradient(circle, rgba(99,102,241,0.25), transparent 70%);
   animation: float 10s ease-in-out infinite alternate;
 }
 
 @keyframes float {
-  from { transform: translate(-100px, -80px); }
-  to { transform: translate(100px, 80px); }
+  from { transform: translate(-80px, -60px); }
+  to { transform: translate(80px, 60px); }
 }
 
 .container {
   width: 100%;
-  max-width: 520px;
+  max-width: 480px;
   text-align: center;
   z-index: 1;
+  transition: all 0.5s ease;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
   font-weight: 600;
-  letter-spacing: 1px;
 }
 
 .tagline {
-  margin-top: 12px;
-  font-size: 1rem;
+  margin-top: 10px;
+  font-size: 0.95rem;
   color: #94a3b8;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .form {
-  margin-top: 40px;
+  margin-top: 28px;
   display: flex;
   border-radius: 999px;
   overflow: hidden;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
   backdrop-filter: blur(12px);
+  transition: all 0.4s ease;
 }
 
 input {
   flex: 1;
-  padding: 14px 18px;
+  padding: 12px 16px;
   border: none;
   background: transparent;
   color: white;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   outline: none;
 }
 
@@ -87,7 +93,7 @@ input::placeholder {
 
 button {
   position: relative;
-  padding: 14px 22px;
+  padding: 12px 18px;
   border: none;
   cursor: pointer;
   background: linear-gradient(135deg, #6366f1, #8b5cf6);
@@ -97,51 +103,46 @@ button {
   transition: all 0.3s ease;
 }
 
-/* hover glow */
 button:hover {
-  box-shadow: 0 0 20px rgba(99,102,241,0.4);
+  box-shadow: 0 0 18px rgba(99,102,241,0.4);
 }
 
-/* ripple animation */
+/* ripple */
 button::after {
   content: "";
   position: absolute;
   width: 0;
   height: 0;
-  background: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.25);
   border-radius: 50%;
-  transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
   opacity: 0;
 }
 
 button:active::after {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   opacity: 1;
-  transition: width 0.4s ease, height 0.4s ease, opacity 0.6s;
+  transition: 0.4s;
 }
 
 /* loading spinner */
-.loading {
-  pointer-events: none;
-}
-
 .loading span {
   opacity: 0;
 }
 
 .loading::before {
   content: "";
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border: 2px solid white;
   border-top-color: transparent;
   border-radius: 50%;
   position: absolute;
-  left: 50%;
   top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   animation: spin 0.7s linear infinite;
 }
@@ -150,45 +151,41 @@ button:active::after {
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-.success {
-  margin-top: 20px;
-  font-size: 0.95rem;
-  color: #c4b5fd;
+/* success state replaces form */
+.success-state {
+  margin-top: 30px;
   opacity: 0;
   transform: translateY(10px);
-  transition: all 0.5s ease;
+  transition: all 0.6s ease;
 }
 
-.success.show {
+.success-state.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* responsive stacking on small devices */
-@media (max-width: 480px) {
-  .form {
-    flex-direction: column;
-    border-radius: 20px;
-  }
+.success-title {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
 
-  button {
-    width: 100%;
-  }
+.success-sub {
+  font-size: 0.9rem;
+  color: #94a3b8;
 }
 
 footer {
-  position: fixed;
-  bottom: 15px;
-  font-size: 0.8rem;
+  position: absolute;
+  bottom: 10px;
+  font-size: 0.75rem;
   color: #64748b;
-  text-align: center;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="container" id="container">
   <h1>Zestlie</h1>
 
   <p class="tagline">
@@ -200,8 +197,9 @@ footer {
     <button id="btn"><span>Get Early Access</span></button>
   </form>
 
-  <div id="success" class="success">
-    You're on the list. We’ll let you in first.
+  <div id="successState" class="success-state">
+    <div class="success-title">You're in.</div>
+    <div class="success-sub">We’ll reach out when Zestlie is ready.</div>
   </div>
 </div>
 
@@ -212,7 +210,7 @@ footer {
 <script>
 const form = document.getElementById('form');
 const btn = document.getElementById('btn');
-const success = document.getElementById('success');
+const successState = document.getElementById('successState');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -229,10 +227,17 @@ form.addEventListener('submit', async (e) => {
     });
 
     if (res.ok) {
-      form.reset();
       btn.classList.remove('loading');
-      btn.innerHTML = "<span>Reserved</span>";
-      success.classList.add('show');
+
+      /* smooth transition */
+      form.style.opacity = "0";
+      form.style.transform = "translateY(-10px)";
+
+      setTimeout(() => {
+        form.style.display = "none";
+        successState.classList.add('show');
+      }, 400);
+
     } else {
       throw new Error();
     }
